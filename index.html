@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora | Matheus Ramazza</title>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./calculator.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <a class="create-calculator" onclick="create()">
+        <span></span>
+        <h5>Calculadora</h5>
+    </a>
+    
+
+    <div class="calculator">
+
+        <div class="container">
+
+            <header>
+                <div class="header">
+                    <span></span>
+                    <h5>Calculadora</h5>
+                </div>
+                <div class="header-buttons">
+                    <button class="minimize" onclick="minimize()">−</button>
+                    <button class="maximize" onclick="maximize()">□</button>
+                    <button class="exit" onclick="exit()">✕</button>
+                </div>
+            </header>
+
+            <div class="display">
+                <button onclick="toggleDropdown()" class="dropbtn">☰</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <span class="esse-span"></span>
+                    <span class="esse-span2">Calculadora</span>
+                    <div class="dropdown-option">
+                        <ion-icon name="calculator-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Padrão</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="flask-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Científica</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="code-slash-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Programador</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Cálculo de data</h5>   
+                    </div>
+                    <span>Conversor</span>
+                    <div class="dropdown-option">
+                        <ion-icon name="cash-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Moeda</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="cube-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Volume</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <i class="bi bi-rulers"></i>
+                        <h5 class="dropdown-h5">Comprimento</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="barbell-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Peso e massa</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="thermometer-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Temperatura</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="flame-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Energia</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <i class="bi bi-grid-3x3"></i>
+                        <h5 class="dropdown-h5">Área</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="walk-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Velocidade</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Tempo</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="flash-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Potência</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <i class="bi bi-device-hdd"></i>
+                        <h5 class="dropdown-h5">Dados</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <ion-icon name="speedometer-outline"></ion-icon>
+                        <h5 class="dropdown-h5">Pressão</h5>
+                    </div>
+                    <div class="dropdown-option">
+                        <i class="bi bi-pie-chart"></i>
+                        <h5 class="dropdown-h5">Ângulo</h5>
+                    </div> 
+                </div>
+                <h4>Padrão</h4>
+                <button class="upper" onclick=""></button>
+                <div class="historico">
+                    <button class="historico-btn" onclick="historico()"></button>
+                </div>
+            </div>
+            <input class="display-conta" type="text" id="display-conta" disabled>
+            <input class="display-numero" type="text" id="display" value="0" disabled>
+            
+            <div class="memory-buttons">
+                <button class="memory-button1" id="MC" onclick="">MC</button>
+                <button class="memory-button1" id="MR" onclick="">MR</button>
+                <button class="memory-button2" id="M+" onclick="">M+</button>
+                <button class="memory-button2" id="M-" onclick="">M-</button>
+                <button class="memory-button2" id="MS" onclick="">MS</button>
+                <button class="memory-button1" id="M" onclick="">M˅</button>
+            </div>
+        
+            <div class="buttons">
+                <button class="type-one" id="%" onclick="">%</button>
+                <button class="type-one" id="CE" onclick="ce()">CE</button>
+                <button class="type-one" id="C" onclick="c()">C</button>
+                <button class="type-one" id="cancel" onclick="removeLast()">⌫</button>
+                <button id="⅟x" onclick="divPorX()">⅟x</button>
+                <button id="x²" onclick="elevado()">x²</button>
+                <button id="√x" onclick="raizQuadrada()">√x</button>
+                <button class="type-one" id="÷" onclick="operacao(this.id)">÷</button>
+                <button id="7" onclick="buttonPress(this.id)">7</button>
+                <button id="8" onclick="buttonPress(this.id)">8</button>
+                <button id="9" onclick="buttonPress(this.id)">9</button>
+                <button class="type-one" id="x" onclick="operacao(this.id)">×</button>
+                <button id="4" onclick="buttonPress(this.id)">4</button>
+                <button id="5" onclick="buttonPress(this.id)">5</button>
+                <button id="6" onclick="buttonPress(this.id)">6</button>
+                <button class="type-one" id="-" onclick="operacao(this.id)">-</button>
+                <button id="1" onclick="buttonPress(this.id)">1</button>
+                <button id="2" onclick="buttonPress(this.id)">2</button>
+                <button id="3" onclick="buttonPress(this.id)">3</button>
+                <button class="type-one" id="+" onclick="operacao(this.id)">+</button>
+                <button id="+⁄-" onclick="maisMenos()">+⁄-</button>
+                <button id="0" onclick="buttonPress(this.id)">0</button>
+                <button id="." onclick="buttonPress(this.id)">,</button>
+                <button class="equals" id="=" onclick="calcular(this.id)">=</button>
+            </div>
+
+        </div>
+    </div> 
+     
+
+    <div class="full-calculator">
+        <header class="full-calculator-header">
+            <div class="full-calculator-header-text">
+                <span></span>
+                <h5>Calculadora</h5>
+            </div>
+            <div class="full-calculator-header-buttons">
+                <button class="full-calculator-minimize" onclick="minimize()">−</button>
+                <button class="full-calculator-maximize" onclick="maximize()">□</button>
+                <button class="full-calculator-exit" onclick="exit()">✕</button>
+            </div>
+        </header>
+
+        <div class="full-calculator-main">
+            
+            <div class="full-calculator-main-container">
+                <div class="full-calculator-main-padrao">
+                    <button>☰</button>
+                    <h4>Padrão</h4>
+                    <button class="upper"></button>
+                    <div class="historico">
+                        <button class="full-calculator-historico-btn" onclick="historico()"></button>
+                    </div>
+                </div>
+
+                <div class="full-calculator-main-display">
+                    <input class="full-calculator-main-display-conta" type="text" id="display-conta" disabled>
+                    <input class="full-calculator-main-display-numero" type="text" id="display" value="0" disabled>
+                </div>
+          
+                <div class="full-calculator-main-memory">
+                    <button class="memory-button1">MC</button>
+                    <button class="memory-button1">MR</button>
+                    <button class="memory-button2">M+</button>
+                    <button class="memory-button2">M-</button>
+                    <button class="memory-button2">MS</button>
+                </div>
+
+                <div class="full-calculator-main-buttons">
+                    <button class="type-one" id="%" onclick="">%</button>
+                    <button class="type-one" id="CE" onclick="ce()">CE</button>
+                    <button class="type-one" id="C" onclick="c()">C</button>
+                    <button class="type-one" id="cancel" onclick="removeLast()">⌫</button>
+                    <button id="⅟x" onclick="divPorX()">⅟x</button>
+                    <button id="x²" onclick="elevado()">x²</button>
+                    <button id="√x" onclick="raizQuadrada()">√x</button>
+                    <button class="type-one" id="÷" onclick="operacao(this.id)">÷</button>
+                    <button id="7" onclick="buttonPress(this.id)">7</button>
+                    <button id="8" onclick="buttonPress(this.id)">8</button>
+                    <button id="9" onclick="buttonPress(this.id)">9</button>
+                    <button class="type-one" id="x" onclick="operacao(this.id)">×</button>
+                    <button id="4" onclick="buttonPress(this.id)">4</button>
+                    <button id="5" onclick="buttonPress(this.id)">5</button>
+                    <button id="6" onclick="buttonPress(this.id)">6</button>
+                    <button class="type-one" id="-" onclick="operacao(this.id)">-</button>
+                    <button id="1" onclick="buttonPress(this.id)">1</button>
+                    <button id="2" onclick="buttonPress(this.id)">2</button>
+                    <button id="3" onclick="buttonPress(this.id)">3</button>
+                    <button class="type-one mais" id="+" onclick="operacao(this.id)">+</button>
+                    <button id="+⁄-" onclick="maisMenos()">+⁄-</button>
+                    <button id="0" onclick="buttonPress(this.id)">0</button>
+                    <button id="." onclick="buttonPress(this.id)">,</button>
+                    <button class="equals" id="=" onclick="calcular(this.id)">=</button>
+                </div>
+            </div>
+
+            <div class="full-calculator-historico">
+                <div>
+                    <h5 class="full-calculator-historico-title" onclick="">Histórico</h5>
+                    <h5 class="full-calculator-memoria-title" onclick="">Memória</h5>
+                </div>
+                <div class="full-calculator-historico-wrapper">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- <div class="to-do">
+        <h1>To do:</h1>
+        <br>
+        - Usar o teclado como input ou clicar nos botões
+        <br>
+        - Adicionar efeito para a aba selecionada do dropdown e no historico/memoria
+        <br>
+        - Responsividade
+        <br>
+        - Adicionar Memoria e afins
+        <br>
+        - Adicionar as funcionalidades faltando para a bigCalculator (dropdown, memoria)
+        <br>
+        - Arrumar o historico com o cell deitado
+        <br>
+        - Arrumar com o celular em portrait mode, fullscreen, aperta o botão de historico e nada acontece
+        <br>
+        <br>
+        <br>
+        <br>
+        - Vai ter q ter um array que armazena a memoria
+        <br>
+        - Quando aperta M+, M- e MS, o botões M, MR e MC ficam habilitados
+        <br>
+        - O botão de M+ e M- vai somar/subtrair o numero do display com o numero armazenado no array[0]
+        <br>
+        - O MR coloca o numero que esta no array[0] no display
+        <br>
+        - O MC limpa o array e desabilita MC, MR e M
+        <br>
+        - O MS armazena o numero do display no array[0] (usar push)
+        <br>
+        - Quando aperta M é exibido os numeros na memoria 
+        <br>
+        - Quando aperta M, ter um botão para deletar a memoria e mostrar uma frase que não há nada na memoria
+        <br>
+        - Quando aperta M, numero que for mostrado, ter 3 botoes:
+        <br>
+        - MC, para apagar o numero da memoria
+        <br>
+        - M+, para somar o numero do display com o numero da memoria
+        <br>
+        - M-, para subtrait o numero do display com o numero da memoria
+        <br>
+
+        
+    </div> -->
+
+    <script defer src="./script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</body>
+</html>
