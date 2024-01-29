@@ -344,6 +344,11 @@ header {
 
 .memory-buttons .memory-button1 {
     color: grey;
+    transition: 0.1s;
+}
+
+.memory-buttons .memory-button1:hover {
+    background-color: #202121;
 }
 
 .memory-buttons .memory-button2 {
@@ -353,8 +358,6 @@ header {
 .memory-buttons .memory-button2:hover {
     background-color: #3a3a3b;
 }
-
-
 
 .buttons {
     display: grid;

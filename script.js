@@ -150,10 +150,91 @@ function deleteHistory() {
 
    fullHistoryWrapper?.appendChild(noFullHistory)
 
-   noHistory = false
+   noHistory = false  
 
-   
+}
 
+var noMemory = true
+
+var memoryArray = [0]
+
+function activateMemory() {
+    const memoryButton1 = document.querySelectorAll('.memory-button1')
+
+    memoryButton1.forEach(element => {
+        element.disabled = false
+        element.style.color = 'white'
+
+        element.onmouseover = function() {
+            this.style.backgroundColor = '#3a3a3b';
+        };
+
+        element.onmouseout = function() {
+            this.style.backgroundColor = '#202121';
+        }; 
+
+   });
+
+}
+
+function deleteMemory() {
+    memoryArray = [0]
+
+    const memoryButton1 = document.querySelectorAll('.memory-button1')
+
+    memoryButton1.forEach(element => {
+        element.disabled = true
+        element.style.color = 'grey'
+
+        element.onmouseover = function() {
+            this.style.backgroundColor = '#202121';
+        };
+
+   });
+
+}
+
+function mPlus() {
+
+    activateMemory()
+
+    const numDisplay = document.querySelector('.display-numero')
+
+    memoryArray[0] += parseInt(numDisplay.value)     
+
+}
+
+function mMinus() {
+
+    activateMemory()
+
+    const numDisplay = document.querySelector('.display-numero')
+
+    memoryArray[0] -= parseInt(numDisplay.value)     
+
+    console.log(memoryArray)
+
+}
+
+function mRecall() {
+
+    const numDisplay = document.querySelector('.display-numero')
+
+    numDisplay.value = memoryArray[0]
+
+}
+
+function mAdd() {
+
+    activateMemory()
+
+    const numDisplay = document.querySelector('.display-numero')
+
+    memoryArray.push(parseInt(numDisplay.value))
+}
+
+function memory() {
+    //teste
 }
 
 function maisMenos() {

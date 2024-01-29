@@ -118,12 +118,12 @@
             <input class="display-numero" type="text" id="display" value="0" disabled>
             
             <div class="memory-buttons">
-                <button class="memory-button1" id="MC" onclick="">MC</button>
-                <button class="memory-button1" id="MR" onclick="">MR</button>
-                <button class="memory-button2" id="M+" onclick="">M+</button>
-                <button class="memory-button2" id="M-" onclick="">M-</button>
-                <button class="memory-button2" id="MS" onclick="">MS</button>
-                <button class="memory-button1" id="M" onclick="">M˅</button>
+                <button class="memory-button1" id="MC" onclick="deleteMemory()" disabled>MC</button>
+                <button class="memory-button1" id="MR" onclick="mRecall()" disabled>MR</button>
+                <button class="memory-button2" id="M+" onclick="mPlus()">M+</button>
+                <button class="memory-button2" id="M-" onclick="mMinus()">M-</button>
+                <button class="memory-button2" id="MS" onclick="mAdd()">MS</button>
+                <button class="memory-button1" id="M" onclick="" disabled>M˅</button>
             </div>
         
             <div class="buttons">
@@ -237,7 +237,7 @@
     </div>
 
 
-    <!-- <div class="to-do">
+    <div class="to-do">
         <h1>To do:</h1>
         <br>
         - Usar o teclado como input ou clicar nos botões
@@ -257,18 +257,6 @@
         <br>
         <br>
         <br>
-        - Vai ter q ter um array que armazena a memoria
-        <br>
-        - Quando aperta M+, M- e MS, o botões M, MR e MC ficam habilitados
-        <br>
-        - O botão de M+ e M- vai somar/subtrair o numero do display com o numero armazenado no array[0]
-        <br>
-        - O MR coloca o numero que esta no array[0] no display
-        <br>
-        - O MC limpa o array e desabilita MC, MR e M
-        <br>
-        - O MS armazena o numero do display no array[0] (usar push)
-        <br>
         - Quando aperta M é exibido os numeros na memoria 
         <br>
         - Quando aperta M, ter um botão para deletar a memoria e mostrar uma frase que não há nada na memoria
@@ -283,7 +271,7 @@
         <br>
 
         
-    </div> -->
+    </div>
 
     <script defer src="./script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
