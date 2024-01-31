@@ -550,7 +550,6 @@ header {
     flex-direction: column;
 }
 
-
 .full-calculator-main-display-conta {
     height: 2.5rem; 
     font-size: 15px;
@@ -569,7 +568,6 @@ header {
     text-align: right;
     color: white;
 } 
-
 
 .full-calculator-main-memory {
     display: flex;
@@ -780,7 +778,89 @@ header {
     color: gray;
 }
 
-@media (max-width: 896px){ /*Para celulares*/
+.memory {
+    position: absolute;
+    bottom: 0.2rem;
+    width: 20rem;
+    height: 20rem;
+    background-color: #302c2c;
+    color: white;
+    box-shadow: 0px -200px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.memory-wrapper {
+    overflow-y: auto;
+    height: 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 2px;
+}
+
+.memory-inner-wrapper {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    gap: 3px;
+    border-radius: 7px;
+    padding: 5px 10px 0px 0;
+}
+
+.memory-inner-wrapper:hover {
+    background-color: #3a3a3b;
+}
+
+.memory-display {
+    font-size: 1.2rem;
+}
+
+.memory-button-wrapper {
+    display: flex;
+    gap: 3px;
+}
+
+.memory-button {
+    color: white;
+    background-color: #555;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 7px 5px 7px;
+}
+
+.memory-button:hover {
+    background-color: gray;
+}
+
+.no-memory {
+    visibility: hidden;
+    position: absolute;
+    margin: 5px;
+}
+
+.delete-memory {
+    height: 2rem;
+    width: 2rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    background-image: url('./bin.png');
+    background-position: center;
+    background-size: 0.9rem;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 87%;
+    right: 0.1rem;
+}
+
+.delete-memory:hover {
+    background-color: #3a3a3b;
+}
+
+@media (max-width: 415px){ /*Para celulares*/
 
     .full-calculator {
         width: 100vw;
@@ -842,7 +922,7 @@ header {
     }
 }
 
-@media (max-width: 896px) and (orientation: landscape) { /*Para celulares deitados*/
+@media (max-width: 415px) and (orientation: landscape) { /*Para celulares deitados*/
 
     body {
         background-color: #202121;
@@ -950,7 +1030,7 @@ header {
 
 }
 
-@media (min-width: 897px) and (max-width: 1367px) { /*Para tablets*/
+@media (min-width: 760px) and (max-width: 1441px) { /*Para tablets*/
     .full-calculator {
         width: 100vw;
         height: 100svh;

@@ -136,7 +136,7 @@ function deleteHistory() {
    const fullHistory = document.querySelectorAll('.full-history-inner-wraper')
    const fullHistoryButton = document.querySelector('.full-delete-history')
 
-   fullHistoryButton.remove()
+   fullHistoryButton?.remove()
 
    fullHistory.forEach(element => {
         element.remove();
@@ -156,7 +156,7 @@ function deleteHistory() {
 
 var noMemory = true
 
-var memoryArray = [0]
+var memoryArray = []
 
 function activateMemory() {
     const memoryButton1 = document.querySelectorAll('.memory-button1')
@@ -178,9 +178,17 @@ function activateMemory() {
 }
 
 function deleteMemory() {
-    memoryArray = [0]
+
+    memoryArray = []
 
     const memoryButton1 = document.querySelectorAll('.memory-button1')
+    const memory = document.querySelector('.memory-wrapper')
+    const noMemory = document.querySelector('.no-memory')
+    const deleteMemoryButton = document.querySelector('.delete-memory')
+
+    memory.remove()
+    deleteMemoryButton.remove()
+    noMemory.style.visibility = 'visible'
 
     memoryButton1.forEach(element => {
         element.disabled = true
@@ -211,9 +219,6 @@ function mMinus() {
     const numDisplay = document.querySelector('.display-numero')
 
     memoryArray[0] -= parseInt(numDisplay.value)     
-
-    console.log(memoryArray)
-
 }
 
 function mRecall() {
@@ -231,10 +236,150 @@ function mAdd() {
     const numDisplay = document.querySelector('.display-numero')
 
     memoryArray.push(parseInt(numDisplay.value))
+
+    numDisplay.value = 0
 }
 
 function memory() {
-    //teste
+
+    const calculator = document.querySelector('.calculator')
+
+    if(foiCriado) {
+        const memoryButton = document.querySelector('.memory')
+        calculator?.removeChild(memoryButton)
+        foiCriado = false
+        return
+    } 
+
+    foiCriado = true
+
+    const memory = document.createElement('div')
+    memory.className = 'memory'
+
+    const noMemory = document.createElement('span')
+    noMemory.className = 'no-memory'
+    noMemory.innerText ='Não há nada na memória'
+
+    const deleteMemoryButton = document.createElement('button')
+    deleteMemoryButton.className = 'delete-memory'
+    deleteMemoryButton.setAttribute('onclick', 'deleteMemory()')
+
+    const memoryWrapper = document.createElement('div')
+    memoryWrapper.className = 'memory-wrapper'
+
+    memoryArray.forEach((element, index) => {
+
+        const memoryInnerWraper = document.createElement('div')
+        memoryInnerWraper.className = 'memory-inner-wrapper'
+        memoryInnerWraper.id = `memory-${index}`
+
+        const memoryDisplay = document.createElement('span')
+        memoryDisplay.className = 'memory-display'
+        memoryDisplay.id = `memory_display-${index}`
+        memoryDisplay.innerText = `${memoryArray[index]}`
+
+        const memoryButtonWrapper = document.createElement('div')
+        memoryButtonWrapper.className = 'memory-button-wrapper'
+
+        const memoryDelete = document.createElement('button')
+        memoryDelete.className = 'memory-button'
+        memoryDelete.id = `memory-${index}`
+        memoryDelete.innerText = 'MC'
+        memoryDelete.style.visibility = 'hidden'
+        memoryDelete.setAttribute('onclick', 'deleteThisMemory(this.id)')
+
+        const memoryAdd = document.createElement('button')
+        memoryAdd.className = 'memory-button'
+        memoryAdd.id = `memory-${index}`
+        memoryAdd.innerText = 'M+'
+        memoryAdd.style.visibility = 'hidden'
+        memoryAdd.setAttribute('onclick', 'addThisMemory(id)')
+
+        const memoryMinus = document.createElement('button')
+        memoryMinus.className = 'memory-button'
+        memoryMinus.id = `memory-${index}`
+        memoryMinus.innerText = 'M-'
+        memoryMinus.style.visibility = 'hidden'
+        memoryMinus.setAttribute('onclick', 'minusThisMemory(id)')
+
+
+        memoryInnerWraper.onmouseover = function() {
+            memoryDelete.style.visibility = 'visible'
+            memoryAdd.style.visibility = 'visible'
+            memoryMinus.style.visibility = 'visible'
+        };
+    
+        memoryInnerWraper.onmouseout = function() {
+            memoryDelete.style.visibility = 'hidden'
+            memoryAdd.style.visibility = 'hidden'
+            memoryMinus.style.visibility = 'hidden'
+        }; 
+
+        memoryButtonWrapper.appendChild(memoryDelete)
+        memoryButtonWrapper.appendChild(memoryAdd)
+        memoryButtonWrapper.appendChild(memoryMinus)
+
+        memoryInnerWraper.appendChild(memoryDisplay)
+        memoryInnerWraper.appendChild(memoryButtonWrapper)
+
+        memoryWrapper.appendChild(memoryInnerWraper)
+        memory.appendChild(noMemory)  
+        memory.appendChild(deleteMemoryButton)     
+        memory.appendChild(memoryWrapper)
+
+        calculator.appendChild(memory)
+        document.body.appendChild(calculator)
+
+    })
+
+}
+
+function deleteThisMemory(id) {
+
+    const memoryWrapper = document.querySelector('.memory-wrapper')
+
+    const newId = parseInt(id.split('-').pop())
+
+    memoryArray.splice(newId, 1)
+
+    const memory = document.getElementById(id)
+
+    memoryWrapper.removeChild(memory)
+
+    if(memoryArray.length == 0) {
+        const noMemory = document.querySelector('.no-memory')
+        noMemory.style.visibility = 'visible'
+
+        deleteMemory()
+    }
+
+}
+
+function addThisMemory(id) {
+
+    const numDisplay = document.querySelector('.display-numero')
+   
+    const newId = parseInt(id.split('-').pop())
+
+    const memoryNumDisplay = document.getElementById(`memory_display-${newId}`)
+
+    memoryArray[newId] += parseInt(numDisplay.value)
+
+    memoryNumDisplay.innerText = `${memoryArray[newId]}`
+
+}
+
+function minusThisMemory(id) {
+    
+    const numDisplay = document.querySelector('.display-numero')
+   
+    const newId = parseInt(id.split('-').pop())
+
+    const memoryNumDisplay = document.getElementById(`memory_display-${newId}`)
+
+    memoryArray[newId] -= parseInt(numDisplay.value)
+
+    memoryNumDisplay.innerText = `${memoryArray[newId]}`
 }
 
 function maisMenos() {
@@ -311,8 +456,6 @@ function buttonPress(id) {
         document.querySelectorAll('#display')[1].value = valorDisplay + id
         return
     }
-
-    
     
 }
 
@@ -610,6 +753,7 @@ function exit() {
         []
     ]
     deleteHistory()
+    deleteMemory()
 
     if(minimizedCalculator == null) {
         return
@@ -701,13 +845,41 @@ window.onclick = function(event) {
         }
     }
 
-    if (!event.target.matches('.historico-btn') && !event.target.matches('.history') && !event.target.matches('.delete-history')) {
+    if (!event.target.matches('.historico-btn') && 
+        !event.target.matches('.history') && 
+        !event.target.matches('.delete-history')) {
         const historico = document.querySelector('.history')
 
-        if(historico == null) return
-
-        calculator?.removeChild(historico)
-        foiCriado = false
-        
+        if(historico == null) {
+            //console.log('historico é igual a null')
+        } else {
+            calculator?.removeChild(historico)
+            foiCriado = false  
+        }
     }
+
+
+    if (!event.target.matches('.memory-btn') && 
+        !event.target.matches('.memory-wrapper') && 
+        !event.target.matches('.memory-inner-wrapper') &&
+        !event.target.matches('.memory-button') && 
+        !event.target.matches('.delete-memory')
+        ) {
+
+        const memory = document.querySelector('.memory')
+
+
+        if(memory == null) {
+            //console.log('historico é igual a null')
+        } else {
+            calculator?.removeChild(memory)
+            foiCriado = false  
+        }
+    }
+
+    
+   
+
+   
+
 }
