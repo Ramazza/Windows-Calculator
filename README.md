@@ -25,7 +25,7 @@ No futuro pretendo adicionar novos elementos, como calculadora de bit, calculado
 ## Demonstração
 
 - Operações básicas
-  ![Operações básicas](./images/operacoes basicas.gif)
+  ![Operações básicas](images/operacoes basicas.gif)
 
 
 ## Melhorias futuras
