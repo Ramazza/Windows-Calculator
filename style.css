@@ -52,7 +52,7 @@ body {
     height: 1.1rem;
     width: 1.1rem;
     margin: 0.9rem;
-    background-image: url('./calculator.png');
+    background-image: url('./images/calculator.png');
     background-position: center;
     background-size: cover;
 }
@@ -102,7 +102,7 @@ header {
     height: 1.1rem;
     width: 1.1rem;
     margin: 0.9rem;
-    background-image: url('./calculator.png');
+    background-image: url('./images/calculator.png');
     background-position: center;
     background-size: cover;
 }
@@ -190,7 +190,7 @@ header {
     margin-left: 0.7rem;
     border: none;
     border-radius: 4px;
-    background-image: url('./corner.png');
+    background-image: url('./images/corner.png');
     background-position: center;
     background-size: 0.9rem;
     background-repeat: no-repeat;
@@ -294,7 +294,7 @@ header {
     border: none;
     border-radius: 4px;
     background-color: #202121;
-    background-image: url('./history.png');
+    background-image: url('./images/history.png');
     background-position: center;
     background-size: 1.2rem;
     background-repeat: no-repeat;
@@ -450,7 +450,7 @@ header {
     height: 1.1rem;
     width: 1.1rem;
     margin: 0.9rem;
-    background-image: url('./calculator.png');
+    background-image: url('./images/calculator.png');
     background-position: center;
     background-size: cover;
 }
@@ -510,7 +510,6 @@ header {
     margin: 3px;
     border: none;
     border-radius: 4px;
-    background-color: #202121;
     color: white;
     font-size: 1em;
     transition: 0s;
@@ -535,7 +534,7 @@ header {
     margin-left: 0.7rem;
     border: none;
     border-radius: 4px;
-    background-image: url('./corner.png');
+    background-image: url('./images/corner.png');
     background-position: center;
     background-size: 0.9rem;
     background-repeat: no-repeat;
@@ -748,7 +747,7 @@ header {
     background-color: transparent;
     border: none;
     border-radius: 5px;
-    background-image: url('./bin.png');
+    background-image: url('./images/bin.png');
     background-position: center;
     background-size: 0.9rem;
     background-repeat: no-repeat;
@@ -770,7 +769,7 @@ header {
     background-color: transparent;
     border: none;
     border-radius: 5px;
-    background-image: url('./bin.png');
+    background-image: url('./images/bin.png');
     background-position: center;
     background-size: 0.9rem;
     background-repeat: no-repeat;
@@ -856,7 +855,7 @@ header {
     background-color: transparent;
     border: none;
     border-radius: 5px;
-    background-image: url('./bin.png');
+    background-image: url('./images/bin.png');
     background-position: center;
     background-size: 0.9rem;
     background-repeat: no-repeat;
@@ -914,14 +913,15 @@ header {
     background-color: gray;
 }
 
-
-
+.full-dropbtn {
+    z-index: 2;
+    background-color: transparent;
+}
 
 .full-dropdown-content {
     display: none;
-    /* top: 3.6rem; */
-    top: 3.6rem;
-    max-height: 30.5rem;
+    top: 2.6rem;
+    height: 100vh;
     width: 15rem;
     gap: 2px;
     position: absolute;
@@ -933,6 +933,7 @@ header {
 }
 
 .full-dropdown-option {
+    height: 3rem;
     display: flex;
     align-items: center;
     color: white;
@@ -940,13 +941,12 @@ header {
     padding-left: 1rem;
     border: none;
     border-radius: 7px;
+
 }
 
 .full-dropdown-content .dropdown-h5 {
     display: flex;
     align-items: center;
-    /* padding-left: 1rem; */
-    /* width: 95%; */
     height: 2.3rem;
     color: white;
 }
@@ -959,7 +959,7 @@ header {
     align-items: center;
     padding-left: 1rem;
     height: 2.3rem;
-    color: gray
+    color: gray;
 }
 .full-dropdown-content .full-esse-span {
     height: 2.5rem;
@@ -977,26 +977,35 @@ header {
 
 @media (max-width: 415px){ /*Para celulares*/
 
-    .full-calculator {
-        width: 100vw;
-        height: 100svh;
+    .full-calculator-historico{
+        width: 25vw;
+        overflow-x: hidden;
     }
 
-    .full-calculator-historico {
-        display: none;
+    .full-calculator-historico-title{
+        font-size: 50%;
     }
 
-    .full-calculator-historico-btn {
-        visibility: visible;
+    .full-calculator-memoria-title{
+        font-size: 50%;
     }
 
-    .full-calculator-main{
-        height: 100svh;
-        width: 100vw;
+    .no-full-history {
+        text-align: center;
+        padding-right: 15px;
+    }
+
+    .full-memory-button-wrapper {
+        padding-right: 9px;
+        gap: 0px;
+    }
+
+    .full-memory-button {
+        font-size: 50%;
     }
 
     .full-calculator-main-container {
-        width: 100vw;
+        width: 75vw;
     }
 
     .full-calculator-main-padrao {
@@ -1005,7 +1014,7 @@ header {
     }
 
     .full-calculator-main-display {
-        width: 100vw;
+        width: 75vw;
         height: 21svh;
     }
 
@@ -1020,24 +1029,87 @@ header {
     }
 
     .full-calculator-main-memory {
-        width: 100vw;
+        width: 75vw;
         height: 4.8svh;
     }
 
     .full-calculator-main-buttons {
-        width: 100vw;
+        width: 75vw;
+        /* height: 65svh; */
         height: 65svh;
         gap: 2px;
         margin-left: 3px;
     }
 
     .full-calculator-main-buttons > button {
-        width: 25vw;
+        /* width: 25vw; */
         height: 100%;
     }
 }
 
-@media (max-width: 415px) and (orientation: landscape) { /*Para celulares deitados*/
+@media (min-width: 760px) and (max-width: 1441px) { /*Para tablets*/
+    .full-calculator {
+        width: 100vw;
+        height: 100svh;
+    }
+
+    .full-calculator-main{
+        height: 100svh;
+        width: 100vw;
+    }
+
+    .full-calculator-historico {
+        width: 25vw;
+        justify-content: center;
+    }
+
+    .full-calculator-main-container {
+        width: 75vw;
+    }
+
+    .full-calculator-main-padrao {
+        align-items: center;
+        height: 5vh;
+        width: 100%;
+    }
+
+    .full-calculator-main-display {
+        width: 100%;
+        height: 21svh;
+        justify-content: center;
+    }
+
+    .full-calculator-main-display-numero{
+        height: 70%;
+        font-size: 6.5em;
+        padding-right: 0.8rem;
+    }
+
+    .full-calculator-main-display-conta{
+        font-size: 1.3em;
+        height: 30%;
+        padding-right: 0.8rem;
+    }
+
+    .full-calculator-main-memory {
+        height: 4.8svh;
+        width: 100%;
+        align-items: center;
+    }
+
+    .full-calculator-main-buttons {
+        width: 100%;
+        height: 65svh;
+        gap: 2px;
+        margin-left: 3px;
+    }
+
+    .full-calculator-main-buttons > button {
+        height: 100%;
+    }
+}
+
+@media (max-width: 900px) and (orientation: landscape) { /*Para celulares deitados*/
 
     body {
         background-color: #202121;
@@ -1102,12 +1174,7 @@ header {
     }
 
     .full-calculator-historico {
-        display: flex;
         width: 25vw;
-    }
-
-    .full-calculator-historico-btn {
-        visibility: hidden;
     }
 
     .full-calculator-main-container {
@@ -1143,66 +1210,4 @@ header {
         width: 100%;
     }
 
-}
-
-@media (min-width: 760px) and (max-width: 1441px) { /*Para tablets*/
-    .full-calculator {
-        width: 100vw;
-        height: 100svh;
-    }
-
-    .full-calculator-main{
-        height: 100svh;
-        width: 100vw;
-    }
-
-    .full-calculator-historico {
-        width: 25vw;
-        justify-content: center;
-    }
-
-    .full-calculator-main-container {
-        width: 75vw;
-    }
-
-    .full-calculator-main-padrao {
-        align-items: center;
-        height: 5vh;
-        width: 100%;
-    }
-
-    .full-calculator-main-display {
-        width: 100%;
-        height: 21svh;
-        justify-content: center;
-    }
-
-    .full-calculator-main-display-numero{
-        height: 70%;
-        font-size: 6.5em;
-        padding-right: 0.8rem;
-    }
-
-    .full-calculator-main-display-conta{
-        font-size: 1.3em;
-        height: 30%;
-        padding-right: 0.8rem;
-    }
-
-    .full-calculator-main-memory {
-        height: 4.8svh;
-        width: 100%;
-        align-items: center;
-    }
-
-    .full-calculator-main-buttons {
-        width: 100%;
-        height: 65svh;
-        gap: 2px;
-        margin-left: 3px;
-    }
-
-    .full-calculator-main-buttons > button {
-        height: 100%;
-    }
 }

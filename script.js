@@ -955,10 +955,6 @@ function maximize() {
     let fullCalculator = document.querySelector('.full-calculator')
     let minimizedCalculator = document.querySelector('.minimized-calculator')
 
-    if(innerWidth > 896) {
-        document.querySelector('.full-calculator-historico-btn').style.visibility = 'hidden'
-    }
-
     if(minimizedCalculator != null) {
         calculator.style.display = 'none'
         fullCalculator.style.display = 'flex'
