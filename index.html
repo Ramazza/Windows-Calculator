@@ -174,7 +174,80 @@
             
             <div class="full-calculator-main-container">
                 <div class="full-calculator-main-padrao">
-                    <button>☰</button>
+                    <button onclick="toggleDropdown()" class="full-dropbtn">☰</button>
+                    <div id="full-myDropdown" class="full-dropdown-content">
+                        <span class="full-esse-span"></span>
+                        <span class="full-esse-span2">Calculadora</span>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="calculator-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Padrão</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="flask-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Científica</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="code-slash-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Programador</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Cálculo de data</h5>   
+                        </div>
+                        <span>Conversor</span>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="cash-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Moeda</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="cube-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Volume</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <i class="bi bi-rulers"></i>
+                            <h5 class="full-dropdown-h5">Comprimento</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="barbell-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Peso e massa</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="thermometer-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Temperatura</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="flame-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Energia</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <i class="bi bi-grid-3x3"></i>
+                            <h5 class="full-dropdown-h5">Área</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="walk-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Velocidade</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="time-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Tempo</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="flash-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Potência</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <i class="bi bi-device-hdd"></i>
+                            <h5 class="full-dropdown-h5">Dados</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <ion-icon name="speedometer-outline"></ion-icon>
+                            <h5 class="full-dropdown-h5">Pressão</h5>
+                        </div>
+                        <div class="full-dropdown-option">
+                            <i class="bi bi-pie-chart"></i>
+                            <h5 class="full-dropdown-h5">Ângulo</h5>
+                        </div> 
+                    </div>
                     <h4>Padrão</h4>
                     <button class="upper"></button>
                     <div class="historico">
@@ -188,11 +261,11 @@
                 </div>
           
                 <div class="full-calculator-main-memory">
-                    <button class="memory-button1">MC</button>
-                    <button class="memory-button1">MR</button>
-                    <button class="memory-button2">M+</button>
-                    <button class="memory-button2">M-</button>
-                    <button class="memory-button2">MS</button>
+                    <button class="memory-button1" onclick="deleteMemory()">MC</button>
+                    <button class="memory-button1" onclick="mRecall()">MR</button>
+                    <button class="memory-button2" onclick="mPlus()">M+</button>
+                    <button class="memory-button2" onclick="mMinus()">M-</button>
+                    <button class="memory-button2" onclick="mAdd()">MS</button>
                 </div>
 
                 <div class="full-calculator-main-buttons">
@@ -225,11 +298,11 @@
 
             <div class="full-calculator-historico">
                 <div>
-                    <h5 class="full-calculator-historico-title" onclick="">Histórico</h5>
-                    <h5 class="full-calculator-memoria-title" onclick="">Memória</h5>
+                    <h5 class="full-calculator-historico-title" onclick="fullCalculatorHistory()">Histórico</h5>
+                    <h5 class="full-calculator-memoria-title" onclick="fullCalculatorMemory()">Memória</h5>
                 </div>
                 <div class="full-calculator-historico-wrapper">
-
+                    <h5 class="no-full-history">Ainda não há histórico</h5>
                 </div>
             </div>
 
@@ -240,29 +313,13 @@
     <div class="to-do">
         <h1>To do:</h1>
         <br>
-        - Usar o teclado como input ou clicar nos botões
-        <br>
-        - Adicionar efeito para a aba selecionada do dropdown e no historico/memoria
-        <br>
         - Responsividade
         <br>
-        - Adicionar Memoria e afins
-        <br>
-        - Adicionar as funcionalidades faltando para a bigCalculator (dropdown, memoria)
+        - Adicionar as funcionalidades faltando para a bigCalculator (dropdown)
         <br>
         - Arrumar o historico com o cell deitado
         <br>
         - Arrumar com o celular em portrait mode, fullscreen, aperta o botão de historico e nada acontece
-        <br>
-        <br>
-        <br>
-        <br>
-        - Quando aperta M, ter um botão para deletar a memoria e mostrar uma frase que não há nada na memoria
-        <br>
-        - Adicionar a msg que não tem nada na memoria
-        <br>
-        - Bug quando aperta MS
-        
     </div>
 
     <script defer src="./script.js"></script>

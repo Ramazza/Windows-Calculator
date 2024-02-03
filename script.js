@@ -23,10 +23,16 @@ var foiCriado = false
 
 var noHistory = true
 
+var inHistory = true
+
 var historyArray = [
     [],
     []
 ]
+
+var noMemory = true
+
+var memoryArray = []
 
 function historico() {
 
@@ -116,8 +122,7 @@ function deleteHistory() {
     ]
 
     if(document.querySelector('.history-wraper') == null && 
-       document.querySelector('.full-calculator').style.display == '') return
-
+       document.querySelector('.full-calculator').style.display == '') return 
 
     const historyWraper = document.querySelector('.history-wraper')
     historyWraper?.remove()
@@ -131,32 +136,25 @@ function deleteHistory() {
     history?.appendChild(noHistoryH5)
     document.body.appendChild(calculator)
 
-    if(document.querySelector('.no-full-history') != null) return
+    const noFullHistory = document.querySelector('.no-full-history')
 
-   const fullHistory = document.querySelectorAll('.full-history-inner-wraper')
-   const fullHistoryButton = document.querySelector('.full-delete-history')
+    if(noFullHistory.style.display != 'none') return
 
-   fullHistoryButton?.remove()
+    const fullHistory = document.querySelectorAll('.full-history-inner-wraper')
+    const fullHistoryButton = document.querySelector('.full-delete-history')
 
-   fullHistory.forEach(element => {
+    fullHistoryButton?.remove()
+
+    fullHistory.forEach(element => {
         element.remove();
-   });
+    });
 
-   const fullHistoryWrapper = document.querySelector('.full-calculator-historico-wrapper')
-   const noFullHistory = document.createElement('h5')
+    noFullHistory.style.display = 'block'
+    noFullHistory.innerText = 'Ainda não há histórico'
 
-   noFullHistory.className = 'no-full-history'
-   noFullHistory.innerText = 'Ainda não há histórico'
-
-   fullHistoryWrapper?.appendChild(noFullHistory)
-
-   noHistory = false  
+    noHistory = false  
 
 }
-
-var noMemory = true
-
-var memoryArray = []
 
 function activateMemory() {
     const memoryButton1 = document.querySelectorAll('.memory-button1')
@@ -185,10 +183,20 @@ function deleteMemory() {
     const memory = document.querySelector('.memory-wrapper')
     const noMemory = document.querySelector('.no-memory')
     const deleteMemoryButton = document.querySelector('.delete-memory')
+    const fullMemory = document.querySelector('.full-memory-wrapper')
+    const noHistory = document.querySelector('.no-full-history')
 
-    memory.remove()
-    deleteMemoryButton.remove()
-    noMemory.style.visibility = 'visible'
+    if(memory != null) {
+        memory.remove()
+        deleteMemoryButton.remove()
+        noMemory.style.visibility = 'visible'
+    }
+
+    if(fullMemory != null){
+        fullMemory.remove()
+        noHistory.style.display = 'block'
+        noHistory.innerText = 'Não há nada na memória'
+    }
 
     memoryButton1.forEach(element => {
         element.disabled = true
@@ -206,9 +214,40 @@ function mPlus() {
 
     activateMemory()
 
+    const fullMemory = document.querySelector('.full-memory-wrapper')
     const numDisplay = document.querySelector('.display-numero')
+    const noHistory = document.querySelector('.no-full-history')
 
-    memoryArray[0] += parseInt(numDisplay.value)     
+    if(numDisplay.value == '0' && memoryArray.length == 0){
+        memoryArray[0] = 0
+
+        if(!inHistory){
+            noHistory.style.display = 'none'
+            fullMemory?.remove()
+            fullCalculatorCreateMemory()
+        }
+        return
+    }
+
+    if(numDisplay.value != '0' && memoryArray.length == 0){
+        memoryArray[0] = 0
+        memoryArray[0] += parseInt(numDisplay.value)  
+        if(!inHistory){
+            noHistory.style.display = 'none'
+            fullMemory?.remove()
+            fullCalculatorCreateMemory()
+        }
+        return
+    }
+
+    memoryArray[0] += parseInt(numDisplay.value)   
+    
+    if(!inHistory){
+        noHistory.style.display = 'none'
+        fullMemory?.remove()
+        fullCalculatorCreateMemory()
+    }
+
 
 }
 
@@ -216,28 +255,74 @@ function mMinus() {
 
     activateMemory()
 
+    const fullMemory = document.querySelector('.full-memory-wrapper')
     const numDisplay = document.querySelector('.display-numero')
+    const noHistory = document.querySelector('.no-full-history')
 
-    memoryArray[0] -= parseInt(numDisplay.value)     
+    if(numDisplay.value == '0' && memoryArray.length == 0){
+        memoryArray[0] = 0
+
+        if(!inHistory){
+            noHistory.style.display = 'none'
+            fullMemory?.remove()
+            fullCalculatorCreateMemory()
+        }
+        return
+    }
+
+    if(numDisplay.value != '0' && memoryArray.length == 0){
+        memoryArray[0] = 0
+        memoryArray[0] -= parseInt(numDisplay.value)
+
+        if(!inHistory){
+            noHistory.style.display = 'none'
+            fullMemory?.remove()
+            fullCalculatorCreateMemory()
+        }
+        return
+    }
+
+    memoryArray[0] -= parseInt(numDisplay.value)   
+
+    if(!inHistory){
+        noHistory.style.display = 'none'
+        fullMemory?.remove()
+        fullCalculatorCreateMemory()
+    }
+
 }
 
 function mRecall() {
 
     const numDisplay = document.querySelector('.display-numero')
+    const fullNumDisplay = document.querySelector('.full-calculator-main-display-numero')
 
     numDisplay.value = memoryArray[0]
+    fullNumDisplay.value = memoryArray[0]
 
 }
 
 function mAdd() {
-
+    
     activateMemory()
 
-    const numDisplay = document.querySelector('.display-numero')
 
+    const numDisplay = document.querySelector('.display-numero')
+    const fullNumDisplay = document.querySelector('.full-calculator-main-display-numero')
+    const fullMemory = document.querySelector('.full-memory-wrapper')
+    const noHistory = document.querySelector('.no-full-history')
+    
     memoryArray.push(parseInt(numDisplay.value))
 
     numDisplay.value = 0
+    fullNumDisplay.value = 0
+
+    if(!inHistory){
+        noHistory.style.display = 'none'
+        fullMemory?.remove()
+        fullCalculatorCreateMemory()
+    }
+
 }
 
 function memory() {
@@ -334,23 +419,177 @@ function memory() {
 
 }
 
+function fullCalculatorHistory() {
+
+    const noHistory = document.querySelector('.no-full-history')
+    const historyTitle = document.querySelector('.full-calculator-historico-title')
+    const memoryTitle = document.querySelector('.full-calculator-memoria-title')
+    const history = document.querySelectorAll('.full-history-inner-wraper')
+    const deleteHistory = document.querySelector('.full-delete-history')
+    const fullMemory = document.querySelector('.full-memory-wrapper')
+
+    if(fullMemory != null) {
+        fullMemory.style.display = 'none'
+    }
+
+
+    if(historyArray[0].length == 0){
+        noHistory.style.display = 'block'
+        noHistory.innerText = 'Ainda não há histórico'
+        historyTitle.style.borderBottom = '3px solid #fe98a1'
+        memoryTitle.style.borderBottom = 'none'
+    }
+
+    if(history[0] != null) {
+        noHistory.style.display = 'none'
+        deleteHistory.style.display = 'block'
+
+        history.forEach(element => {
+            element.style.display = 'block'
+        });
+    }
+
+    historyTitle.style.borderBottom = '3px solid #fe98a1'
+    memoryTitle.style.borderBottom = 'none'
+    inHistory = true
+
+}
+
+function fullCalculatorMemory() {
+
+    const noHistory = document.querySelector('.no-full-history')
+    const historyTitle = document.querySelector('.full-calculator-historico-title')
+    const memoryTitle = document.querySelector('.full-calculator-memoria-title')
+    const history = document.querySelectorAll('.full-history-inner-wraper')
+    const deleteHistory = document.querySelector('.full-delete-history')
+    const fullMemory = document.querySelector('.full-memory-wrapper')
+
+
+    if(history != null) {
+        history.forEach(element => {
+            element.style.display = 'none'
+        });
+
+    }
+
+    if(memoryArray.length == 0){
+        noHistory.style.display = 'block'
+        noHistory.innerText = 'Não há nada na memória'
+
+    }
+
+    if(deleteHistory != null) deleteHistory.style.display = 'none'
+
+    if(memoryArray.length != 0){
+        noHistory.style.display = 'none'
+
+        fullMemory?.remove()
+        fullCalculatorCreateMemory()
+
+    }
+
+    historyTitle.style.borderBottom = 'none'
+    memoryTitle.style.borderBottom = '3px solid #fe98a1'
+    
+    inHistory = false
+
+}
+
+function fullCalculatorCreateMemory() {
+
+    const fullCalculatorHistorico = document.querySelector('.full-calculator-historico')
+    const noHistory = document.querySelector('.no-full-history')
+
+    const fullMemoryWrapper = document.createElement('div')
+    fullMemoryWrapper.className = 'full-memory-wrapper'
+
+    memoryArray.forEach((element, index) => {
+        
+    
+        const fullMemoryInnerWraper = document.createElement('div')
+        fullMemoryInnerWraper.className = 'full-memory-inner-wrapper'
+        fullMemoryInnerWraper.id = `memory-${index}`
+
+        const fullMemoryDisplay = document.createElement('span')
+        fullMemoryDisplay.className = 'full-memory-display'
+        fullMemoryDisplay.id = `memory_display-${index}`
+        fullMemoryDisplay.innerText = `${memoryArray[index]}`
+
+        const fullMemoryButtonWrapper = document.createElement('div')
+        fullMemoryButtonWrapper.className = 'full-memory-button-wrapper'
+
+        const fullMemoryDelete = document.createElement('button')
+        fullMemoryDelete.className = 'full-memory-button'
+        fullMemoryDelete.id = `memory-${index}`
+        fullMemoryDelete.innerText = 'MC'
+        fullMemoryDelete.style.visibility = 'hidden'
+        fullMemoryDelete.setAttribute('onclick', 'deleteThisMemory(this.id)')
+
+        const fullMemoryAdd = document.createElement('button')
+        fullMemoryAdd.className = 'full-memory-button'
+        fullMemoryAdd.id = `memory-${index}`
+        fullMemoryAdd.innerText = 'M+'
+        fullMemoryAdd.style.visibility = 'hidden'
+        fullMemoryAdd.setAttribute('onclick', 'addThisMemory(id)')
+
+        const fullMemoryMinus = document.createElement('button')
+        fullMemoryMinus.className = 'full-memory-button'
+        fullMemoryMinus.id = `memory-${index}`
+        fullMemoryMinus.innerText = 'M-'
+        fullMemoryMinus.style.visibility = 'hidden'
+        fullMemoryMinus.setAttribute('onclick', 'minusThisMemory(id)')
+
+        fullMemoryInnerWraper.onmouseover = function() {
+            fullMemoryDelete.style.visibility = 'visible'
+            fullMemoryAdd.style.visibility = 'visible'
+            fullMemoryMinus.style.visibility = 'visible'
+        };
+        
+        fullMemoryInnerWraper.onmouseout = function() {
+            fullMemoryDelete.style.visibility = 'hidden'
+            fullMemoryAdd.style.visibility = 'hidden'
+            fullMemoryMinus.style.visibility = 'hidden'
+        }; 
+
+        fullMemoryButtonWrapper.appendChild(fullMemoryDelete)
+        fullMemoryButtonWrapper.appendChild(fullMemoryAdd)
+        fullMemoryButtonWrapper.appendChild(fullMemoryMinus)
+
+        fullMemoryInnerWraper.appendChild(fullMemoryDisplay)
+        fullMemoryInnerWraper.appendChild(fullMemoryButtonWrapper)
+
+        fullMemoryWrapper.appendChild(fullMemoryInnerWraper)
+        fullCalculatorHistorico.appendChild(fullMemoryWrapper)
+
+    })
+
+}
+
 function deleteThisMemory(id) {
 
-    const memoryWrapper = document.querySelector('.memory-wrapper')
 
+    const memory = document.querySelectorAll(`#${id}`)
     const newId = parseInt(id.split('-').pop())
+    const memoryNumDisplay = document.getElementById(`memory_display-${newId}`).innerText
+    const indexToRemove = memoryArray.indexOf(parseInt(memoryNumDisplay));
 
-    memoryArray.splice(newId, 1)
+    memory.forEach(element =>{
+        element.remove()
+    })
 
-    const memory = document.getElementById(id)
-
-    memoryWrapper.removeChild(memory)
+    memoryArray.splice(indexToRemove, 1)
 
     if(memoryArray.length == 0) {
+
+        if(!inHistory){
+            const noHistory = document.querySelector('.no-full-history')
+            noHistory.style.display = 'block'
+            noHistory.innerText = 'Não há nada na memória'
+            deleteMemory()
+        }
+
         const noMemory = document.querySelector('.no-memory')
         noMemory.style.visibility = 'visible'
-
-        deleteMemory()
     }
 
 }
@@ -358,13 +597,10 @@ function deleteThisMemory(id) {
 function addThisMemory(id) {
 
     const numDisplay = document.querySelector('.display-numero')
-   
     const newId = parseInt(id.split('-').pop())
-
     const memoryNumDisplay = document.getElementById(`memory_display-${newId}`)
 
     memoryArray[newId] += parseInt(numDisplay.value)
-
     memoryNumDisplay.innerText = `${memoryArray[newId]}`
 
 }
@@ -577,7 +813,7 @@ function calcular(id) {
     const lastIndex = historyArray[0].length - 1;
 
     noHistory = false
-    noFullHistory?.remove()
+    noFullHistory.style.display = 'none'
 
     if(historyArray[0].length <= 1) {
         const fullDeleteHistory = document.createElement('button')
@@ -614,6 +850,18 @@ function calcular(id) {
         fullCalculatorHistoricoWrapper.appendChild(fullHistoryInnerWraper)
                 
         fullCalculatorHistorico.appendChild(fullCalculatorHistoricoWrapper)
+    }
+
+    if(!inHistory) {
+        const fullHistoryInnerWraper = document.querySelectorAll('.full-history-inner-wraper')
+        const noHistory = document.querySelector('.no-full-history')
+
+        if(memoryArray.length == 0) noHistory.style.display = 'block'
+
+        fullHistoryInnerWraper.forEach(element => {
+            element.style.display = 'none'
+        })
+
     }
 
 }
@@ -719,23 +967,21 @@ function maximize() {
     }
 
     if(historyArray[0] == '' && noHistory) {
-        const fullHistory = document.querySelector('.full-calculator-historico-wrapper')
-        const noFullHistory = document.createElement('h5')
-        noFullHistory.className = 'no-full-history'
-        noFullHistory.innerText = 'Ainda não há histórico'
-
-        fullHistory?.appendChild(noFullHistory)
-
         noHistory = false
-
     }
 
     if(calculator.style.display == '') {
         calculator.style.display = 'none'
         fullCalculator.style.display = 'flex'
+
+        if(!inHistory) {
+            memory()
+         }
+
     } else {
         calculator.style.display = ''
         fullCalculator.style.display = 'none'
+
     }
 }
 
@@ -791,9 +1037,6 @@ function onDrag({movementX, movementY}){
     let leftVal = parseInt(getStyle.left);
     let topVal = parseInt(getStyle.top);
 
-    // Largura da calculadora: 320px 160
-    // Altura da calculadora: 521.6px 260.8
-
     let rightLimit = (window.innerWidth/2) - 160 
     let leftLimit = -(window.innerWidth/2) + 160
 
@@ -831,12 +1074,25 @@ document.addEventListener("mouseup", ()=>{
 function toggleDropdown() {
     var dropdown = document.getElementById("myDropdown");
     dropdown.style.display = (dropdown.style.display === "grid") ? "none" : "grid";
+
+    var fullDropdown = document.getElementById('full-myDropdown')
+    fullDropdown.style.display = (fullDropdown.style.display === "grid") ? "none" : "grid";
 }
 
 window.onclick = function(event) {
 
     if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "grid") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+
+    if (!event.target.matches('.full-dropbtn')) {
+        var dropdowns = document.getElementsByClassName("full-dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
             if (openDropdown.style.display === "grid") {
