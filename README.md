@@ -24,8 +24,7 @@ No futuro pretendo adicionar novos elementos, como calculadora de bit, calculado
 
 ## Demonstração
 
-- Operações básicas
-    ![operacoes basicas](https://github.com/Ramazza/Windows-Calculator/assets/86618328/aa918ff9-de02-49ed-bb69-69bba07c2818)
+
 
 
 ## Melhorias futuras
