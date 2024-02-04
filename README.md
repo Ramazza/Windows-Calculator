@@ -24,8 +24,25 @@ No futuro pretendo adicionar novos elementos, como calculadora de bit, calculado
 
 ## Demonstração
 
+-Operações básicas
 
+![Operações básicas](https://github.com/Ramazza/Windows-Calculator/assets/86618328/c3fb5cb2-7150-41ed-b493-84ddda3e33ef)
 
+- Operações especiais
+
+![Operações especiais](https://github.com/Ramazza/Windows-Calculator/assets/86618328/aed4c44f-2797-4c7f-bb8a-82328a0602e1)
+
+- Histórico
+
+![Histórico](https://github.com/Ramazza/Windows-Calculator/assets/86618328/61ab0d87-3058-48a3-807a-e12e93ab6b83)
+
+- Memória
+
+![Memória](https://github.com/Ramazza/Windows-Calculator/assets/86618328/32d65d54-0c62-42f4-8ec8-da53e6509fc4)
+
+- Tela cheia
+
+![Tela cheia](https://github.com/Ramazza/Windows-Calculator/assets/86618328/32548745-5db0-41ce-b722-7be17befc04e)
 
 ## Melhorias futuras
 
